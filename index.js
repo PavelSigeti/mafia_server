@@ -21,6 +21,14 @@ app.get('/current/', (req, res) => {
   }));
 });
 
+app.get('/restart', (req, res) => {
+  reset();
+  const resp = {'type': 'restart'};
+  io.to('room').emit('chat_message', resp);
+});
+
+
+
 const httpServer = createServer(app);
 const io = new Server(httpServer, { 
     cors: {
