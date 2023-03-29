@@ -25,9 +25,8 @@ app.get('/restart', (req, res) => {
   reset();
   const resp = {'type': 'restart'};
   io.to('room').emit('chat_message', resp);
+  res.send(true);
 });
-
-
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, { 
